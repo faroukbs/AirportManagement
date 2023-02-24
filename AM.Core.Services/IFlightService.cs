@@ -24,6 +24,6 @@ namespace AM.Core.Services
         public IEnumerable<object> SortFlights();
 
         public IEnumerable<object> GetThreeOlderTravellers(Flight vol);
-        public IEnumerable<object> ShowGroupedFlights();
+        public void ShowGroupedFlights();
     }
 }

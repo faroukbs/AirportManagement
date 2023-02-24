@@ -54,9 +54,18 @@ namespace AM.Core.Services
             return passenger.Take(3);
         }
 
-        public IEnumerable<object> ShowGroupedFlights()
+        public void ShowGroupedFlights()
         {
-            return Flights.GroupBy(e => e.Destination);
+            var result = Flights.GroupBy(e => e.Destination);
+            foreach (var f2 in result)
+            {
+                Console.WriteLine(f2.Key + " " + f2);
+                foreach (var f3 in f2) {
+
+                    Console.WriteLine(f3);
+                }
+            }
+            return ;
         }
        public void GetFlights(string filterType, string filterValue)
         {
