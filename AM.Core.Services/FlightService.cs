@@ -1,4 +1,6 @@
-﻿using System.Reflection;
+﻿using System.Collections;
+using System.Reflection;
+using System.Security.Cryptography.X509Certificates;
 using AM.Core.Domain;
 
 namespace AM.Core.Services
@@ -24,10 +26,39 @@ namespace AM.Core.Services
                    where flight.Destination == destination
                    select flight.FlightDate).ToList();
 
-
+       
         }
 
-        public void GetFlights(string filterType, string filterValue)
+        public IEnumerable<object> ShowFlightDetails(Plane plane)
+        {
+            return Flights.Where(e => e.MyPlane == plane).Select(e => new { e.Destination, e.FlightDate });
+        }
+
+        public int GetWeeklyFlightNumber(DateTime date)
+        {
+            return Flights.Where(e=>e.FlightDate < date.AddDays(7)).Count();
+        }
+
+        public double GetDurationAverage(String destination)
+        {
+            return Flights.Where(e => e.Destination == destination).Select(e => e.EstimatedDuration).Average();
+        }
+
+        public IEnumerable<object> SortFlights() { 
+            return Flights.OrderByDescending(e => e.EstimatedDuration);
+        }
+
+        public IEnumerable<object> GetThreeOlderTravellers(Flight vol)
+        {
+            var nbpassenger = vol.Passengers.OrderBy(e => e.Age);
+            return nbpassenger.Take(3);
+        }
+
+        public IEnumerable<object> ShowGroupedFlights()
+        {
+            return Flights.GroupBy(e => e.Destination);
+        }
+       public void GetFlights(string filterType, string filterValue)
         {
 
             switch (filterType)
