@@ -50,8 +50,8 @@ namespace AM.Core.Services
 
         public IEnumerable<object> GetThreeOlderTravellers(Flight vol)
         {
-            var nbpassenger = vol.Passengers.OrderBy(e => e.Age);
-            return nbpassenger.Take(3);
+            var passenger = vol.Passengers.OrderByDescending(e => e.Age);
+            return passenger.Take(3);
         }
 
         public IEnumerable<object> ShowGroupedFlights()
