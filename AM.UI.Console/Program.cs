@@ -1,5 +1,8 @@
 ﻿// See https://aka.ms/new-console-template for more information
 using AM.Core.Domain;
+using AM.Core.Services;
+
+IFlightService fs = new FlightService();
 
 Console.WriteLine("Hello, World!");
 //TP 1.Question7
@@ -29,5 +32,6 @@ Console.WriteLine(calculatedAge);
 passenger.BirthDate = new DateTime(2000, 1, 1);
 //passenger.GetAge(passenger);
 //Console.WriteLine(passenger.Age);
+
 
 

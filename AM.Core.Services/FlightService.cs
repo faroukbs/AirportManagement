@@ -31,12 +31,12 @@ namespace AM.Core.Services
 
         public IEnumerable<object> ShowFlightDetails(Plane plane)
         {
-            return Flights.Where(e => e.MyPlane == plane).Select(e => new { e.Destination, e.FlightDate });
+            return Flights.Where(e => e.MyPlane.PlaneId == plane.PlaneId).Select(e => new { e.Destination, e.FlightDate });
         }
 
         public int GetWeeklyFlightNumber(DateTime date)
         {
-            return Flights.Where(e=>e.FlightDate < date.AddDays(7)).Count();
+            return Flights.Where(e => e.FlightDate < date.AddDays(7) && e.FlightDate >= date).Count();
         }
 
         public double GetDurationAverage(String destination)
