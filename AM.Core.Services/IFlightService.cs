@@ -25,5 +25,10 @@ namespace AM.Core.Services
 
         public IEnumerable<object> GetThreeOlderTravellers(Flight vol);
         public void ShowGroupedFlights();
+
+        //TP2.Q13.a
+        public delegate int GetScore(Passenger p);
+
+        Passenger GetSeniorPassenger(GetScore meth);
     }
 }

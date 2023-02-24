@@ -138,5 +138,11 @@ namespace AM.Core.Services
 
             }
         }
+
+        public Passenger GetSeniorPassenger(IFlightService.GetScore meth)
+        {
+            // return Flights.Select(f => f.Passengers.MaxBy(p => meth(p))).MaxBy(p => meth(p));
+            return Flights.SelectMany(f => f.Passengers).MaxBy(p => meth(p));
+        }
     }
 }
